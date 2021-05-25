@@ -25,6 +25,13 @@ const Team = () => {
     fetchTeamMembers();
   }, []);
 
+  //Sorting list of team members by created_at
+  useEffect(() => {
+    const sortedList = teamMembers.sort((a, b) => Moment(a.created_at).unix() - Moment(b.created_at).unix());
+    setTeamMembers(sortedList);
+  }, [teamMembers]);
+
+
   // calculating data for summary table
   useEffect(() => {
     const totalCount = teamMembers.reduce(
@@ -71,7 +78,6 @@ const Team = () => {
       </Descriptions>
     </div>
   );
-
   return (
     <div style={{ padding: 40 }}>
       {renderSummary()}

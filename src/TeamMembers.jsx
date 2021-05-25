@@ -15,17 +15,10 @@ const Items = styled.p`
 
 const TeamMembers = ({ list }) => {
   const { Meta } = Card;
-  const [sortedTeamMembers, setSortedTeamMembers] = useState([]);
-
-  // Sorting list of team members by created_at
-  useEffect(() => {
-    const sortedList = list.sort((a, b) => Moment(a.created_at).unix() - Moment(b.created_at).unix());
-    setSortedTeamMembers(sortedList);
-  }, [list]);
 
   // Rendering team members
   const renderTeamMembers = () => {
-    return sortedTeamMembers.map((teamMember) => (
+    return list.map((teamMember) => (
       <Card
         key={teamMember.id}
         hoverable
